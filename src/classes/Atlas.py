@@ -1,4 +1,4 @@
-from data.command_obj_list import command_obj_list
+from data.command_obj_list import commandManager
 import sys
 
 
@@ -34,7 +34,7 @@ class Atlas:
         the matching command to the given interaction, in case the command is existent, runs it by
         calling the Command child object own self.run()
         """
-        for c in command_obj_list:
+        for c in commandManager.commands:
             if c.name == self.command:
                 c.run(self.flags)
 
@@ -60,14 +60,14 @@ class Atlas:
         else:
             # if it was called with invalid arguments, prompt to the user the invalid ones
             invalid_commands = [
-                _ for _ in self.commands if _ not in [i.name for i in command_obj_list]
+                _ for _ in self.commands if _ not in [i.name for i in commandManager.commands]
             ]
             if invalid_commands:
                 print(f"invalid command -- {' | '.join(invalid_commands)} --")
                 sys.exit()
 
             invalid_flags = [
-                _ for _ in self.flags if _ not in flatten([_.flags for _ in command_obj_list])
+                _ for _ in self.flags if _ not in flatten([_.flags for _ in commandManager.commands])
             ]
 
 
