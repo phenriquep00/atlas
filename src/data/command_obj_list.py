@@ -2,9 +2,8 @@ from commands.Command import Test
 from commands.Help import Help
 
 # objs
-#TODO: automate flags creation by getting the flags from the Class.DOCS constant
-test = Test(name="test", flags=["-help", "-test"])
-help = Help(name="help", flags=["-help"])
+test = Test(name="test", flags=Test.DOCS.keys())
+help = Help(name="help", flags=Help.DOCS.keys())
 
 command_obj_list = [
     test,

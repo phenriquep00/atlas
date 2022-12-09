@@ -59,20 +59,4 @@ class Atlas:
                 )
                 sys.exit()
 
-            invalid_options = [
-                _
-                for _ in self.options
-                if _ not in flatten([_.flags for _ in commandManager.commands])
-            ]
-
-            if invalid_options:
-                Messanger.message(
-                    tag="failure",
-                    text=f"invalid options for command -- {self.commands[0]} --  found at -- {' | '.join(invalid_options)} --",
-                )
-                Messanger.message(
-                    tag="hint",
-                    text=f"check the flags that are valid as options for -- {self.commands[0]} -- by executing: -- atlas help -{self.commands[0]} --",
-                )
-                sys.exit()
         return self.commands[0]
