@@ -5,9 +5,7 @@ import sys
 
 
 class Atlas:
-    """Atlas class to reference the atlas object that is used to run the commands
-    and pluggins
-    """
+    """Atlas class to reference the atlas object that is used to run the commands and pluggins"""
 
     def __init__(self, commands):
         """construct a intance of Atlas class
@@ -20,19 +18,13 @@ class Atlas:
         self.command = self.validate_arguments()
 
     def run(self):
-        """loops through all the commands from command_obj_list trying to find
-        the matching command to the given interaction, in case the command is existent, runs it by
-        calling the Command child object own self.run()
-        """
+        """loops through all the commands from command_obj_list trying to find the matching command to the given interaction, in case the command is existent, runs it by calling the Command child object own self.run()"""
         for c in commandManager.commands:
             if c.name == self.command:
                 c.run(self.flags)
 
     def validate_arguments(self):
-        """method to validate the arguments passed to the atlas object,
-        valid arguments are those containing a single command (and it's flags)
-        this method tries to check if the command is valid by looping through the
-        object list of command and all the valid flags inside all the objects
+        """method to validate the arguments passed to the atlas object, valid arguments are those containing a single command (and it's flags) this method tries to check if the command is valid by looping through the object list of command and all the valid flags inside all the objects
 
         Returns:
             command: in case the command and flags are valid returns a stripped
@@ -71,7 +63,13 @@ class Atlas:
             ]
 
             if invalid_flags:
-                Messanger.message(tag="failure", text=f"invalid flags for command {self.commands[0]} found at -- {' | '.join(invalid_flags)} --")
-                Messanger.message(tag="hint", text=f"check valid flags for {self.commands[0]} with -- atlas help -{self.commands[0]} --")
+                Messanger.message(
+                    tag="failure",
+                    text=f"invalid flags for command {self.commands[0]} found at -- {' | '.join(invalid_flags)} --",
+                )
+                Messanger.message(
+                    tag="hint",
+                    text=f"check valid flags for {self.commands[0]} with -- atlas help -{self.commands[0]} --",
+                )
                 sys.exit()
         return self.commands[0]
