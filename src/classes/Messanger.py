@@ -4,16 +4,16 @@ from colorama import Fore
 
 class Messanger:
 
-    TAGS = ["sucess", "failure", "warning", "hint"]
+    TAGS = ["sucess", "failure", "warning", "hint", "help"]
 
     @staticmethod
-    def message(text, tag):
+    def message(text:str, tag:str, command_documentation=dict()):
         """display a message in the terminal with a custom formatting based on the tag given
 
         Args:
             text (_type_): text to be displayed
             tag (_type_): type of message to display:
-                possible tags are: sucess | failure | warning
+                possible tags are: sucess | failure | warning | hint | help
         """
         if tag not in [_ for _ in Messanger.TAGS]:
             # if the tag is not available
@@ -32,3 +32,7 @@ class Messanger:
         elif tag == "hint":
             # check if the tag represents a hinting message
             print(Fore.CYAN + f"HINT\n{text}")
+        elif tag == "help":
+            # check if the tag represents a help message
+            print(Fore.BLUE + f"HELP\n{text}")
+            print(command_documentation)

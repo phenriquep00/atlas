@@ -3,7 +3,7 @@ from commands.Help import Help
 
 # objs
 test = Test(name="test", flags=["-help", "-test"])
-help = Help(name="help", flags=["-help", "-test"])
+help = Help(name="help", flags=["-help"])
 
 command_obj_list = [
     test,
