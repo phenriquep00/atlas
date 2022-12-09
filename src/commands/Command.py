@@ -1,4 +1,3 @@
-# TODO: rewrite this
 # Command and it's children classes are used to make the atlas object execute some instruction
 #
 # ---------------------------------------------------------------------------------------------
@@ -36,14 +35,14 @@
 #   def run(self, options):
 #      self.validate(options=options)
 #      self.help(docs=self.DOCS, options=options)
-#      
+#
 #      =-~=-~THE COMMAND LOGIC GOES HERE ~-=~-=
 #
 # NOTE: the self.validate() but it's not recommended, since it is the only bit of code that actually checks
 # if the flags are valid. If you do want more control of the validation method, I recommend the implementation of
 # a new method that runs the self.validate() within it,or just adding your custom validation inside the self.run()
 #
-# NOTE: the self.help() method can also be overwritten, and it is also not recommended, the self.help() method 
+# NOTE: the self.help() method can also be overwritten, and it is also not recommended, the self.help() method
 # generates automatically a nicely formatted usage documentation based on the DOCS constant, overwriting it will make
 # your custom command lose the design that all the others have.
 
@@ -99,10 +98,10 @@ class Command:
         self.help(dict(), options)
 
 
-##    add logic here
+###### add logic here
 
 
-mockumentation = {"-help": "some usefull text "}
+mockumentation = {"-help": "some usefull text ", "-test": "aaaaaaaaaaaaaaaaaa"}
 
 
 class Test(Command):
