@@ -55,7 +55,7 @@ class Atlas:
                     text=f"invalid command -- {' | '.join(invalid_commands)} --",
                 )
                 sys.exit()
-
+    
             invalid_flags = [
                 _
                 for _ in self.flags
@@ -65,11 +65,11 @@ class Atlas:
             if invalid_flags:
                 Messanger.message(
                     tag="failure",
-                    text=f"invalid flags for command {self.commands[0]} found at -- {' | '.join(invalid_flags)} --",
+                    text=f"invalid flags for command -- {self.commands[0]} --  found at -- {' | '.join(invalid_flags)} --",
                 )
                 Messanger.message(
                     tag="hint",
-                    text=f"check valid flags for {self.commands[0]} with -- atlas help -{self.commands[0]} --",
+                    text=f"check valid flags for -- {self.commands[0]} -- by executing: -- atlas help -{self.commands[0]} --",
                 )
                 sys.exit()
         return self.commands[0]
