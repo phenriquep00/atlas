@@ -1,6 +1,5 @@
 from data.command_obj_list import commandManager
 from classes.Messanger import Messanger
-from utils.flatten import flatten
 import sys
 
 

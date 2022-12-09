@@ -3,32 +3,49 @@
 #
 # ---------------------------------------------------------------------------------------------
 #
-# Every command has a run() method that is the part will be executed from within atlas
+# HOW TO CREATE A COMMAND:
+# - create a new class inheting the Command class defined in this file
+# - this new class (command) should have 2 parameters: a name and a list of flags
+# NOTE: a command name MUST match ist object instanced in data.command_obj_list.py in order for it to be
+# correctly executed inside atlas
+# NOTE: the list of flags MUST include at least 1 flag: "-help"
+# a command must also have a Documentation constant in the shape of a dictionary
+# this constant will be used in the help() method that documentates it's usage
+# the disctionary keys will resamble the  command flags (ALWAYS STARTING WITH "-")
+# and it's values will be the usage description for the flag
 #
-# Command objects are constructed in ./data.command_obj_lsit.py and are stores inside the
-# commandManager object.
+# The run() method is where the logic to be executed by atlas will be implemented
+# the first two lines will be self.validate() and self.help()
+# self.validate() comes from the Command class, and check if the options takem from atlas arguments are
+# valid, if not, end the process.
+# self.help() checks if the -help flag was given as a option in the atlas arguments, if so, displays to the
+# user the list of flags for this command, and hows him the documentation.
 #
-# Command objects will have a name attribute, that HAS to be set with the same name as the object itself
-# in order to make it reachable in atlas' own run() method.
+# EXEMPLE OF IMPLEMENTATION
+# class Exemple(Command):
 #
-# The flags given to a command are all the possible options that can be passed to it, a good practice is
-# to start every flag command with a single "-".
+#   DOCS = {
+#      "-help": "display exemple command usage",
+#     "-blablabla": "some description",
+#    "-and_so_on": "and so forth",
+# }
 #
-# ----------------------------------------------------------------------------------------------
+#   def __init__(self, name:str, flags:list):
+#      super().__init__(name, flags)
 #
-# CREATING A COMMAND:
-# To create a command following the design utilized over the entire project, please follow this instructions:
-# - Ultimatly, a command is a classs that inherits the Command class codded here.
-# - after seting up the constructor, the new command class has to overwrite the run() method with the logic
-# that it wants to be ran by atlas.
+#   def run(self, options):
+#      self.validate(options=options)
+#      self.help(docs=self.DOCS, options=options)
+#      
+#      =-~=-~THE COMMAND LOGIC GOES HERE ~-=~-=
 #
-# - the validate method can be usto get further control of validating options, in case the command
-# has multiple unique flags or subflags that work in a specific way;
-# - create a dictionary with the command flags for keys, and flags descriptions for values, this will be automatically formatted
-# by the Messanger message() method described in the parent Command class.
-# NOTE: ALWAYS CALL THE HELP() METHOD, PASSING THE DICTIONARY AS A ARGUMENT IN ORDER TO GENERATE THE HELP OPTION AND HANDLE IT
-# AUTOMATICALLY.
-# to generate a custom help documentation, just overwrite the help() method.
+# NOTE: the self.validate() but it's not recommended, since it is the only bit of code that actually checks
+# if the flags are valid. If you do want more control of the validation method, I recommend the implementation of
+# a new method that runs the self.validate() within it,or just adding your custom validation inside the self.run()
+#
+# NOTE: the self.help() method can also be overwritten, and it is also not recommended, the self.help() method 
+# generates automatically a nicely formatted usage documentation based on the DOCS constant, overwriting it will make
+# your custom command lose the design that all the others have.
 
 
 import sys
@@ -48,13 +65,16 @@ class Command:
 
     def validate(self, options: list):
         """method to check if the options where correctly used in order to make the command function properly
-        
+
         Args:
             options (list): options passed as sys.args within the atlas command
         """
         for option in options:
             if option not in self.flags:
-                Messanger.message(tag="failure", text="invalid option given to this command, check all valid flags with -- <command> -help --")
+                Messanger.message(
+                    tag="failure",
+                    text="invalid option given to this command, check all valid flags with -- <command> -help --",
+                )
                 sys.exit()
         pass
 
@@ -93,8 +113,9 @@ class Test(Command):
     def __init__(self, name, flags):
         super().__init__(name, flags)
 
-
     def run(self, options):
         self.validate(options)
         self.help(docs=Test.DOCS, options=options)
-        Messanger.message(tag="success", text="the test commnad has been succesfuly ran")
+        Messanger.message(
+            tag="success", text="the test commnad has been succesfuly ran"
+        )
