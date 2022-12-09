@@ -1,3 +1,4 @@
+# TODO: rewrite this
 # Command and it's children classes are used to make the atlas object execute some instruction
 #
 # ---------------------------------------------------------------------------------------------
@@ -21,11 +22,11 @@
 # - after seting up the constructor, the new command class has to overwrite the run() method with the logic
 # that it wants to be ran by atlas.
 #
-# - the validate method can be overwritten to get further control of validating options, in case the command
+# - the validate method can be usto get further control of validating options, in case the command
 # has multiple unique flags or subflags that work in a specific way;
 # - create a dictionary with the command flags for keys, and flags descriptions for values, this will be automatically formatted
 # by the Messanger message() method described in the parent Command class.
-# NOTE: ALWAYS CALL THE HELP() METHOD, PASSING THE DICTIONARY AS A ARGUMENT IN ORDER TO GENERATE THE HELP OPTION AND HANDLE IT 
+# NOTE: ALWAYS CALL THE HELP() METHOD, PASSING THE DICTIONARY AS A ARGUMENT IN ORDER TO GENERATE THE HELP OPTION AND HANDLE IT
 # AUTOMATICALLY.
 # to generate a custom help documentation, just overwrite the help() method.
 
@@ -45,13 +46,27 @@ class Command:
         self.name = name
         self.flags = flags
 
-    def validate(self):
-        """method to check if the options where correctly used in order to make the command function properly"""
+    def validate(self, options: list):
+        """method to check if the options where correctly used in order to make the command function properly
+        
+        Args:
+            options (list): options passed as sys.args within the atlas command
+        """
+        for option in options:
+            if option not in self.flags:
+                Messanger.message(tag="failure", text="invalid option given to this command, check all valid flags with -- <command> -help --")
+                sys.exit()
         pass
 
-    def help(self, docs: dict):
-        """method that displays the usage documentation for a given method"""
-        if "-help" in self.flags:
+    def help(self, docs: dict, options: list):
+        """method that displays the usage documentation for a given method
+
+        Args:
+            docs (dict): description of every flag that the command has, using flag names for eys and describion it in the values
+            options (list): options passed as sys.args within the atlas command
+        """
+        if "-help" in options:
+            # check if the -help option was invoked
             Messanger.message(
                 tag="help",
                 text=f"usage for {self.name} command\n",
@@ -59,26 +74,27 @@ class Command:
             )
             sys.exit()
 
-    def run(self):
+    def run(self, options):
         """implements the logic to be run by atlas"""
-        self.help()
+        self.help(dict(), options)
 
 
 ##    add logic here
 
 
-mockumentation = {"-help": "ajuda poha"}
+mockumentation = {"-help": "some usefull text "}
 
 
 class Test(Command):
     """mock Command for testing"""
 
+    DOCS = mockumentation
+
     def __init__(self, name, flags):
         super().__init__(name, flags)
 
+
     def run(self, options):
-        self.help(mockumentation)
-        print(
-            f"running --test-- command. This command has the following flags: {self.flags}"
-        )
-        print(f"the given options (flags) from terminal were: {options}")
+        self.validate(options)
+        self.help(docs=Test.DOCS, options=options)
+        Messanger.message(tag="success", text="the test commnad has been succesfuly ran")

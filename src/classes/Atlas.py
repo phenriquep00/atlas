@@ -18,14 +18,14 @@ class Atlas:
         self.command = self.validate_arguments()
 
     def run(self):
-        """loops through all the commands from command_obj_list trying to find the matching command to the given interaction, 
+        """loops through all the commands from command_obj_list trying to find the matching command to the given interaction,
         in case the command is existent, runs it by calling the Command child object own self.run()"""
         for c in commandManager.commands:
             if c.name == self.command:
                 c.run(self.options)
 
     def validate_arguments(self):
-        """method to validate the arguments passed to the atlas object, 
+        """method to validate the arguments passed to the atlas object,
         valid arguments are those containing a single command (and it's options) this method tries to check if the
          command is valid by looping through the object list of command and all the valid flags inside all the objects
 
@@ -58,7 +58,7 @@ class Atlas:
                     text=f"invalid command -- {' | '.join(invalid_commands)} --",
                 )
                 sys.exit()
-    
+
             invalid_options = [
                 _
                 for _ in self.options
