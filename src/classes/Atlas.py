@@ -14,20 +14,23 @@ class Atlas:
             commands (string): a string with the name of the command to be executed by the atlas object
         """
         self.commands = [_ for _ in commands[1:] if _[0] != "-"]
-        self.flags = commands[2:]
+        self.options = commands[2:]
         self.command = self.validate_arguments()
 
     def run(self):
-        """loops through all the commands from command_obj_list trying to find the matching command to the given interaction, in case the command is existent, runs it by calling the Command child object own self.run()"""
+        """loops through all the commands from command_obj_list trying to find the matching command to the given interaction, 
+        in case the command is existent, runs it by calling the Command child object own self.run()"""
         for c in commandManager.commands:
             if c.name == self.command:
-                c.run(self.flags)
+                c.run(self.options)
 
     def validate_arguments(self):
-        """method to validate the arguments passed to the atlas object, valid arguments are those containing a single command (and it's flags) this method tries to check if the command is valid by looping through the object list of command and all the valid flags inside all the objects
+        """method to validate the arguments passed to the atlas object, 
+        valid arguments are those containing a single command (and it's options) this method tries to check if the
+         command is valid by looping through the object list of command and all the valid flags inside all the objects
 
         Returns:
-            command: in case the command and flags are valid returns a stripped
+            command: in case the command and options are valid returns a stripped
             command to be used on the self.run() method
         """
         # check if the atlas keyword was called properly with valid arguments
@@ -56,20 +59,20 @@ class Atlas:
                 )
                 sys.exit()
     
-            invalid_flags = [
+            invalid_options = [
                 _
-                for _ in self.flags
+                for _ in self.options
                 if _ not in flatten([_.flags for _ in commandManager.commands])
             ]
 
-            if invalid_flags:
+            if invalid_options:
                 Messanger.message(
                     tag="failure",
-                    text=f"invalid flags for command -- {self.commands[0]} --  found at -- {' | '.join(invalid_flags)} --",
+                    text=f"invalid options for command -- {self.commands[0]} --  found at -- {' | '.join(invalid_options)} --",
                 )
                 Messanger.message(
                     tag="hint",
-                    text=f"check valid flags for -- {self.commands[0]} -- by executing: -- atlas help -{self.commands[0]} --",
+                    text=f"check the flags that are valid as options for -- {self.commands[0]} -- by executing: -- atlas help -{self.commands[0]} --",
                 )
                 sys.exit()
         return self.commands[0]

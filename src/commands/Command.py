@@ -25,7 +25,7 @@
 # has multiple unique flags or subflags that work in a specific way;
 #
 # --------------------------------------------------------------------------------------------- 
-#
+# TODO: create a "help" tag to message to keep a help flag doumenting pattern
 # A good practice is to create a -help flag to every custom command using the Messanger class with the "help"
 # tag to document how the command works and how it's flags should be used
 
