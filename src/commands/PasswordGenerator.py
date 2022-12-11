@@ -14,6 +14,7 @@ class PasswordGenerator(Command):
     Returns:
         _type_: _description_
     """
+
     DOCS = {
         "-help": "display password generator usage",
         "-len": "number of characters to be included in the generated password default: 12",
@@ -21,7 +22,7 @@ class PasswordGenerator(Command):
         "-hide": "down display the generated password",
     }
 
-    def __init__(self, name:str, flags):
+    def __init__(self, name: str, flags):
         """constructor
 
         Args:
@@ -41,7 +42,7 @@ class PasswordGenerator(Command):
         """
         self.validate(options=options)
         self.help(docs=PasswordGenerator.DOCS, options=options)
-        
+
         # TODO:
         # for now, all passwords will contain letters, digits and special chars
         # but the user will have a chance to customize it in the future
@@ -53,29 +54,34 @@ class PasswordGenerator(Command):
         valid_chars = letters + digits + special_chars
 
         def generate(length: int):
-            pwd = ''
+            pwd = ""
 
             for i in range(length):
-                pwd += ''.join(secrets.choice(valid_chars))
+                pwd += "".join(secrets.choice(valid_chars))
             return pwd
 
-        if '-len' in options:
+        if "-len" in options:
             # check if the user typed the -digits flag, if so, ask a input for a custon value for the password to be generated
             while ...:
                 try:
-                    pwd_length = int(input('Number of digits for the newly generated password: '))
+                    pwd_length = int(
+                        input("Number of digits for the newly generated password: ")
+                    )
 
                     break
                 except ValueError:
-                    Messanger.message(tag="failure", text="invalid! use only integer numbers. try again or exit [ctrl + c]")
+                    Messanger.message(
+                        tag="failure",
+                        text="invalid! use only integer numbers. try again or exit [ctrl + c]",
+                    )
         else:
-            Messanger.message(tag="hint", text='generating a 12 digit password')
+            Messanger.message(tag="hint", text="generating a 12 digit password")
             pwd_length = 12
-        
+
         # generate a password:
         password = generate(pwd_length)
 
-        if '-dontcopy' in options:
+        if "-dontcopy" in options:
             pass
         else:
             pyperclip.copy(password)
