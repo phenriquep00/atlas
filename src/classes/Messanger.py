@@ -22,7 +22,7 @@ class Messanger:
 
         if tag == "success":
             # checks if the tag represents a sucess message
-            print(Fore.GREEN + f"SUCCESS\n{text}")
+            print(Fore.GREEN + text)
         elif tag == "failure":
             # check if the tag represents a failure message
             print(Fore.RED + f"ERROR\n{text}")
