@@ -5,14 +5,14 @@ from commands.PasswordGenerator import PasswordGenerator
 # objs
 test = Test(name="test", flags=Test.DOCS.keys())
 help = Help(name="help", flags=Help.DOCS.keys())
-password_generator = PasswordGenerator(
-    name="password_generator", flags=PasswordGenerator.DOCS.keys()
+pass_gen = PasswordGenerator(
+    name="pass_gen", flags=PasswordGenerator.DOCS.keys()
 )
 
 command_obj_list = [
     test,
     help,
-    password_generator,
+    pass_gen,
 ]
 
 
