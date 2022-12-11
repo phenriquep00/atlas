@@ -68,6 +68,8 @@ class Command:
         Args:
             options (list): options passed as sys.args within the atlas command
         """
+        #TODO: change this method to check if the given option STARTSWITH a flag
+        # this change is necessary in order to add arguments to flags that need custom inputs
         for option in options:
             if option not in self.flags:
                 Messanger.message(

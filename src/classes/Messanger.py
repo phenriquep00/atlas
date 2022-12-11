@@ -22,18 +22,18 @@ class Messanger:
 
         if tag == "success":
             # checks if the tag represents a sucess message
-            print(Fore.GREEN + text)
+            print(Fore.GREEN + text + Fore.RESET)
         elif tag == "failure":
             # check if the tag represents a failure message
-            print(Fore.RED + f"ERROR\n{text}")
+            print(Fore.RED + f"ERROR\n{text}" + Fore.RESET)
         elif tag == "warning":
             # check if the tag represents a warning message
-            print(Fore.YELLOW + f"WARNING\n{text}")
+            print(Fore.YELLOW + f"WARNING\n{text}" + Fore.RESET)
         elif tag == "hint":
             # check if the tag represents a hinting message
-            print(Fore.CYAN + f"HINT\n{text}")
+            print(Fore.CYAN + f"HINT\n{text}" + Fore.RESET)
         elif tag == "help":
             # check if the tag represents a help message
             #TODO: format the command_documentation
-            print(Fore.BLUE + f"HELP\n{text}")
+            print(Fore.BLUE + f"HELP\n{text}" + Fore.RESET)
             print(command_documentation)
