@@ -6,6 +6,14 @@ import pyperclip
 
 
 class PasswordGenerator(Command):
+    """Generate a random password based on a user custom input
+
+    Args:
+        Command (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     DOCS = {
         "-help": "display password generator usage",
         "-len": "number of characters to be included in the generated password default: 12",
@@ -13,10 +21,24 @@ class PasswordGenerator(Command):
         "-hide": "down display the generated password",
     }
 
-    def __init__(self, name, flags):
+    def __init__(self, name:str, flags):
+        """constructor
+
+        Args:
+            name (string): name of the calling command from atlas
+            flags (list): list of all possible option
+        """
         super().__init__(name, flags)
 
     def run(self, options):
+        """execute the password generator logic
+
+        Args:
+            options (list): options passed by the user from the atlas command
+
+        Returns:
+            _type_: _description_
+        """
         self.validate(options=options)
         self.help(docs=PasswordGenerator.DOCS, options=options)
         
