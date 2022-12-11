@@ -28,10 +28,10 @@ class Messanger:
             print(Fore.RED + f"ERROR\n{text}" + Fore.RESET)
         elif tag == "warning":
             # check if the tag represents a warning message
-            print(Fore.YELLOW + f"WARNING\n{text}" + Fore.RESET)
+            print(Fore.YELLOW + text + Fore.RESET)
         elif tag == "hint":
             # check if the tag represents a hinting message
-            print(Fore.CYAN + f"HINT\n{text}" + Fore.RESET)
+            print(Fore.CYAN + text + Fore.RESET)
         elif tag == "help":
             # check if the tag represents a help message
             #TODO: format the command_documentation
