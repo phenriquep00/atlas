@@ -19,5 +19,5 @@ class Help(Command):
         for command in d.commandManager.commands:
             Messanger.message(
                 tag="success",
-                text=f"{command.name.upper()}:\nflags:\n{list(command.flags)}\n",
+                text=f"{command.name.upper()}:\n----------------------------\nflags:\n{list(command.flags)}\n",
             )
