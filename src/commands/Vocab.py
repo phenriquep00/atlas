@@ -34,11 +34,18 @@ class Vocab(Command):
             f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
         )
 
-        data = response.json()[0]
+        try:
+            if response.json()["title"]:
+                Messanger.message(
+                    tag="failure",
+                    text="Sorry pal, we couldn't find definitions for the word you were looking for.",
+                )
+        except TypeError:
+            data = response.json()[0]
 
-        Vocab.formatted_data(data=data)
+            Vocab.formatted_data(data=data)
 
-        Messanger.message(tag="success", text="Vocab ran succesfully")
+            Messanger.message(tag="success", text="Vocab ran succesfully")
 
     @staticmethod
     def check_word():
@@ -56,11 +63,11 @@ class Vocab(Command):
         )
 
         print("Definitions: \n")
-        for meaning in data['meanings']:
+        for meaning in data["meanings"]:
             print(f"  ---> {meaning['definitions'][0]['definition']}")
         print("")
 
         print("Synonyms: \n")
-        for meaning in data['meanings']:
+        for meaning in data["meanings"]:
             print(f"  ---> {meaning['definitions'][0]['synonyms']}")
         print("")
