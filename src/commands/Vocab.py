@@ -28,24 +28,39 @@ class Vocab(Command):
                     tag="failure",
                     text="invalid value, please type a alphabetical value",
                 )
-        
+
         Messanger.message(tag="hint", text="loading...")
-        response = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}")
-        
-        Messanger.message(tag="success", text=f"Prompting data for the word {word.upper()}")
+        response = requests.get(
+            f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+        )
 
-        data = response.json()
+        data = response.json()[0]
 
-        print(data[0]['word'])
+        Vocab.formatted_data(data=data)
 
         Messanger.message(tag="success", text="Vocab ran succesfully")
 
     @staticmethod
     def check_word():
-        word = str(input("What word would you like to get information from: "))
+        word = str(input("What word would you like to get information from: \n"))
         for letter in word:
             if letter not in string.ascii_letters:
-                raise(ValueError)
+                raise (ValueError)
 
         return word
 
+    @staticmethod
+    def formatted_data(data):
+        Messanger.message(
+            tag="success", text=f"Prompting data for the word {data['word'].upper()}"
+        )
+
+        print("Definitions: \n")
+        for meaning in data['meanings']:
+            print(f"  ---> {meaning['definitions'][0]['definition']}")
+        print("")
+
+        print("Synonyms: \n")
+        for meaning in data['meanings']:
+            print(f"  ---> {meaning['definitions'][0]['synonyms']}")
+        print("")
