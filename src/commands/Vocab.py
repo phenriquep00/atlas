@@ -99,3 +99,11 @@ class Vocab(Command):
         for meaning in data["meanings"]:
             print(f"  ---> {meaning['definitions'][0]['synonyms']}")
         print("")
+
+# TODO:
+# - return more information from the words
+# - add language flags to access diferent dictionaries
+# - add flags to display custom information about the word:
+#       - return only definitions
+#       - return only synonims
+#       - return only examples
