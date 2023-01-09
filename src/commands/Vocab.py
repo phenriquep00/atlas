@@ -28,10 +28,15 @@ class Vocab(Command):
                     tag="failure",
                     text="invalid value, please type a alphabetical value",
                 )
-
+        
+        Messanger.message(tag="hint", text="loading...")
         response = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}")
+        
+        Messanger.message(tag="success", text=f"Prompting data for the word {word.upper()}")
 
-        print(response.json())
+        data = response.json()
+
+        print(data[0]['word'])
 
         Messanger.message(tag="success", text="Vocab ran succesfully")
 
