@@ -1,7 +1,7 @@
 from commands.Command import Test
 from commands.Help import Help
 from commands.PasswordGenerator import PasswordGenerator
-from commands.SpeedTest import SpeedTest
+from commands.WikipediaEntry import WikipediaEntry
 from commands.Vocab import Vocab
 from commands.Timer import Timer
 
@@ -11,7 +11,7 @@ help = Help(name="help", flags=Help.DOCS.keys())
 pass_gen = PasswordGenerator(name="pass_gen", flags=PasswordGenerator.DOCS.keys())
 vocab = Vocab(name="vocab", flags=Vocab.DOCS.keys())
 timer = Timer(name="timer", flags=Timer.DOCS.keys())
-speed_test = SpeedTest(name="speedtest", flags=SpeedTest.DOCS.keys())
+wiki_entry = WikipediaEntry(name="wikientry", flags=WikipediaEntry.DOCS.keys())
 
 command_obj_list = [
     test,
@@ -19,7 +19,7 @@ command_obj_list = [
     pass_gen,
     vocab,
     timer,
-    speed_test,
+    wiki_entry,
 ]
 
 

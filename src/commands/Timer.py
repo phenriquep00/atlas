@@ -37,6 +37,7 @@ class Timer(Command):
 
         # command execution goes here
 
+        #TODO: transform this part of the code into the implementation of a flag for countdown
         # aks for the user the amount os time (in seconds) to countdown
         while ...:
             try:
