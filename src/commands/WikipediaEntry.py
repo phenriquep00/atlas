@@ -3,6 +3,10 @@ from commands.Command import Command
 import wikipedia
 import pyttsx3
 
+# TODO: work on the reliability of thiw command
+# TODO: catch common errors with pyttsx3 api
+# TODO: add flags
+
 
 class WikipediaEntry(Command):
     """
@@ -14,9 +18,8 @@ class WikipediaEntry(Command):
     Args:
         Command (_type_): super class
     """
-    DOCS = {
-        "-help": "in progress..."
-    }
+
+    DOCS = {"-help": "in progress..."}
 
     def __init__(self, name: str, flags: list):
         """class constructior
@@ -47,4 +50,3 @@ class WikipediaEntry(Command):
         print(results)
         engine.say(results)
         engine.runAndWait()
-
