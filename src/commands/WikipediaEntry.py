@@ -3,9 +3,7 @@ from commands.Command import Command
 import wikipedia
 import pyttsx3
 
-# TODO: work on the reliability of thiw command
-# TODO: catch common errors with pyttsx3 api
-# TODO: add flags
+
 
 
 class WikipediaEntry(Command):
