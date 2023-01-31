@@ -5,3 +5,10 @@
 # TODO: catch common errors with pyttsx3 api
 # TODO: add flags
 # ----------------------------------------------
+
+# Windows workflow
+# ------------------------------------------------
+# TODO: fix the importation problems on windows
+# TODO: get a way to acess the script globaly just by
+# running atlas 'command'
+# -------------------------------------------------
