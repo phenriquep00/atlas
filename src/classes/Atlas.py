@@ -19,6 +19,7 @@ class Atlas:
     def run(self):
         """loops through all the commands from command_obj_list trying to find the matching command to the given interaction,
         in case the command is existent, runs it by calling the Command child object own self.run()"""
+        print('running')
         for c in commandManager.commands:
             if c.name == self.command:
                 c.run(self.options)

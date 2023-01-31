@@ -1,6 +1,5 @@
-#! /usr/bin/python3
 import sys
-from classes.Atlas import Atlas
+""" from classes.Atlas import Atlas """
 
 
 """
@@ -11,8 +10,10 @@ ARGS = sys.argv
 
 
 def main():
-    atlas = Atlas(commands=ARGS)
-    atlas.run()
+    """ atlas = Atlas(commands=ARGS)
+    atlas.run() """
+
+    print('working')
 
 
 if __name__ == "__main__":
