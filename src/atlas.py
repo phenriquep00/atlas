@@ -2,52 +2,60 @@ from optparse import OptionParser
 
 from commands.greet import Greet
 
-greet = Greet(name='--hello')
 
 class Atlas:
     """
     The Atlas class represents the virtual assistant, and provides
-    the functionality for greeting the user and displaying the version
-    and help information.
+    the functionality for greeting the user, displaying the version
+    and help information, and executing other commands.
     """
+
     def __init__(self):
         """
         Initialize an instance of the Atlas class by creating an
-        OptionParser object.
+        OptionParser object and an instance of the Greet class.
         """
         self.parser = OptionParser()
-        self.greet = greet
+        self.commands = {
+            "--hello": Greet(name='--hello', help="show a greeting message to the user"),
+        }
 
     def run(self):
         """
         Run the virtual assistant and handle the command line arguments.
         """
-        # Add the '--hello' option
-        self.parser.add_option("--hello", dest="greet",
-                               action="store_true",
-                               help="display a greeting to the user")
-        
+        # Add the options based on the commands dictionary
+        for name, cmd in self.commands.items():
+            self.parser.add_option(
+                name, dest=name, action="store_true", help=cmd.help)
+
         # Add the '--version' option
-        self.parser.add_option("--version", dest="version",
+        self.parser.add_option("v", "--version", dest="version",
                                action="store_true",
                                help="display the version of Atlas")
-        
+
         # Parse the command line arguments
         (options, args) = self.parser.parse_args()
 
-        
-        # If the '--hello' option is specified, call the 'greet' method
-        if options.greet:
-            self.greet.run()
-        
-        # If the '--version' option is specified, display the version
-        elif options.version:
-            print("Atlas version 1.0.0")
-        
-        
-        # If no options are specified, display an error message
-        else:
-            self.parser.error("Please specify a command. Use 'atlas --help' to see available commands.")
+        # If the number of arguments is incorrect, display an error message
+        if len(args) != 0:
+            self.parser.error(
+                "Too many arguments. Use 'atlas --help' for usage information.")
+
+        # loop through the command dictionary and check if this command has been called by the atlas via optparse's options
+        for name, cmd in self.commands.items():
+            if getattr(options, name):
+                cmd.run()
+
+            # If the '--version' option is specified, display the version
+            elif options.version:
+                print("Atlas version 1.0.0")
+
+            # If no options are specified, display an error message
+            else:
+                self.parser.error(
+                    "Please specify a command. Use 'atlas --help' to see available commands.")
+
 
 if __name__ == "__main__":
     """
