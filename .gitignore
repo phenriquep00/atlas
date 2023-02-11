@@ -1,0 +1,25 @@
+# Python specific files
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Package management files
+Pipfile
+Pipfile.lock
+
+# Virtual environment files
+env/
+venv/
+.env/
+.venv/
+.pipenv/
+
+# IDE files
+.idea/
+.vscode
+*.sublime-project
+*.sublime-workspace
