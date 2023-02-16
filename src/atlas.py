@@ -51,11 +51,11 @@ class Atlas:
             print("Atlas version 1.0.0")
         
         # If the '--hello' option is specified, run the corresponding command
-        elif options.hello:
+        if options.hello:
             self.commands["--hello"].run()
         
         # If the '--download' option is specified, run the corresponding command
-        elif options.download:
+        if options.download:
             self.commands["--download"].run()
         
         # If no options are specified, display an error message
