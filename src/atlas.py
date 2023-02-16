@@ -1,66 +1,68 @@
 from optparse import OptionParser
-
 from commands.greet import Greet
-
+from commands.youtube_downloader import YoutubeDownloader
 
 class Atlas:
     """
-    The Atlas class represents the virtual assistant, and provides
-    the functionality for greeting the user, displaying the version
-    and help information, and executing other commands.
-    """
+    A command-line utility for various tasks.
 
+    This utility provides a few different commands to perform various tasks.
+    """
     def __init__(self):
         """
-        Initialize an instance of the Atlas class by creating an
-        OptionParser object and an instance of the Greet class.
+        Initializes the Atlas command-line utility.
+
+        This method sets up the OptionParser object and adds the available commands to it.
         """
+        # Initialize the OptionParser object
         self.parser = OptionParser()
+        
+        # Define the available commands with their respective names and help messages
         self.commands = {
             "--hello": Greet(name='--hello', help="show a greeting message to the user"),
+            "--download": YoutubeDownloader(name="--download", help="download videos from YouTube by passing a video URL as option for this command")
         }
+        
+        # Add the '--version' option to the OptionParser object
+        self.parser.add_option("-v", "--version", dest="version",
+                               action="store_true",
+                               help="display the version of Atlas")
+        
+        # Add the '--hello' option to the OptionParser object
+        self.parser.add_option("--hello", dest="hello",
+                               action="store_true",
+                               help="show a greeting message to the user")
+        
+        # Add the '--download' option to the OptionParser object
+        self.parser.add_option("--download", dest="download",
+                               help="download videos from YouTube by passing a video URL as option for this command")
 
     def run(self):
         """
-        Run the virtual assistant and handle the command line arguments.
+        Runs the Atlas command-line utility.
+
+        This method parses the command line arguments and runs the appropriate command based on the options specified.
         """
-        # Add the options based on the commands dictionary
-        for name, cmd in self.commands.items():
-            self.parser.add_option(
-                name, dest=name, action="store_true", help=cmd.help)
-
-        # Add the '--version' option
-        self.parser.add_option("v", "--version", dest="version",
-                               action="store_true",
-                               help="display the version of Atlas")
-
         # Parse the command line arguments
         (options, args) = self.parser.parse_args()
 
-        # If the number of arguments is incorrect, display an error message
-        if len(args) != 0:
-            self.parser.error(
-                "Too many arguments. Use 'atlas --help' for usage information.")
+        # If the '--version' option is specified, display the version
+        if options.version:
+            print("Atlas version 1.0.0")
+        
+        # If the '--hello' option is specified, run the corresponding command
+        if options.hello:
+            self.commands["--hello"].run()
+        
+        # If the '--download' option is specified, run the corresponding command
+        if options.download:
+            self.commands["--download"].run()
+        
+        # If no options are specified, display an error message
+        else:
+            self.parser.error("Please specify a command. Use 'atlas --help' to see available commands.")
 
-        # loop through the command dictionary and check if this command has been called by the atlas via optparse's options
-        for name, cmd in self.commands.items():
-            if getattr(options, name):
-                cmd.run()
-
-            # If the '--version' option is specified, display the version
-            elif options.version:
-                print("Atlas version 1.0.0")
-
-            # If no options are specified, display an error message
-            else:
-                self.parser.error(
-                    "Please specify a command. Use 'atlas --help' to see available commands.")
-
-
+# If the script is run as the main program, create an instance of the Atlas class and call its 'run' method.
 if __name__ == "__main__":
-    """
-    If the script is run as the main program, create an instance of the
-    Atlas class and call its 'run' method.
-    """
     atlas = Atlas()
     atlas.run()
