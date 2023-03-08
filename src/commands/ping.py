@@ -1,4 +1,3 @@
-import click
 import subprocess
 from commands.command import Command
 
