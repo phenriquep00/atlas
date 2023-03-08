@@ -1,20 +1,17 @@
 import os
 import click
 
+from commands.hello import Hello
+
 
 @click.group()
-@click.option('--atlas-home', envvar='ATLAS_HOME', default='.atlas')
-@click.option('--debug/--nodebug', default=False, envvar='ATLAS_DEBUG')
 @click.pass_context
-def cli(ctx, atlas_home, debug):
+def cli(ctx):
     pass
 
 
-@cli.command()
-@click.argument('src')
-@click.argument('dest', required=False)
-def atlas(src, dest):
-    click.echo(src)
+hello = Hello(cli=cli)
+hello.create()
 
 
 if __name__ == '__main__':
