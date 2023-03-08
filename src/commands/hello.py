@@ -7,7 +7,7 @@ class Hello(Command):
         super().__init__(cli)
 
     def create(self):
-        @self.cli.command()
+        @self.cli.command(help="a test command just in case")
         @click.argument('lang', required=False)
         def hello(lang):
             if str(lang) == 'pt':
