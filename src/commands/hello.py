@@ -8,7 +8,7 @@ class Hello(Command):
 
     def create(self):
         @self.cli.command(help="a test command just in case")
-        @click.argument('lang', required=False)
+        @click.option('--lang', default="en")
         def hello(lang):
             if str(lang) == 'pt':
                 click.echo('Olá')

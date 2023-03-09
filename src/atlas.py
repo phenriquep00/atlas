@@ -4,6 +4,7 @@ import click
 
 from commands.hello import Hello
 from commands.ping import Ping
+from commands.youtube_downloader import YoutubeDownloader
 
 
 # Definition of the cli commands group
@@ -14,13 +15,17 @@ def cli(ctx):
 
 
 # Commands declaration
-# hello command
+# hello command (hello)
 hello = Hello(cli=cli)
 hello.create()
 
-# ping command
+# ping command (ping)
 ping = Ping(cli=cli)
 ping.create()
+
+# youtube downloader (yt-dl)
+yt_dl = YoutubeDownloader(cli=cli)
+yt_dl.create()
 
 
 if __name__ == '__main__':
