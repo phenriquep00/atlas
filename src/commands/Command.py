@@ -11,5 +11,6 @@ class Command:
 
     def create(self):
         """create the command object to be executed at atlas.py
+        the definition of arguments and options go in here before the function to be executed
         """
         pass
