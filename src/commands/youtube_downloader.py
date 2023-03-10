@@ -15,7 +15,7 @@ class YoutubeDownloader(Command):
             youtubeObject = YouTube(url)
             youtubeObject = youtubeObject.streams.get_highest_resolution()
             try:
-                youtubeObject.download()
+                youtubeObject.download('~/Downloads')
             except:
                 click.echo("An error has occurred")
             click.echo("Download is completed successfully")
