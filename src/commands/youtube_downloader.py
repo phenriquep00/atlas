@@ -1,3 +1,4 @@
+import os
 import click
 from commands.command import Command
 
@@ -10,12 +11,19 @@ class YoutubeDownloader(Command):
 
     def create(self):
         @self.cli.command(help="download youtube videos")
+        @click.option("--filename", required=False, )
         @click.argument("url", required=True)
-        def yt_dl(url):
+        def yt_dl(url, filename):
             youtubeObject = YouTube(url)
-            youtubeObject = youtubeObject.streams.get_highest_resolution()
+            youtubeObject = youtubeObject.streams.filter(
+                file_extension="mp4").get_highest_resolution()
             try:
-                youtubeObject.download('~/Downloads')
+                if filename:
+                    youtubeObject.download(
+                        output_path=f"{os.environ['UserProfile']}/Videos", filename=f'{filename}.mp4')
+                else:
+                    youtubeObject.download(
+                        f"{os.environ['UserProfile']}/Videos")
             except:
                 click.echo("An error has occurred")
             click.echo("Download is completed successfully")
