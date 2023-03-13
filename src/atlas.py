@@ -5,6 +5,7 @@ import click
 from commands.hello import Hello
 from commands.ping import Ping
 from commands.youtube_downloader import YoutubeDownloader
+from commands.wikipedia_summarizer import WikipediaSummarizer
 
 
 # Definition of the cli commands group
@@ -26,6 +27,10 @@ ping.create()
 # youtube downloader (yt-dl)
 yt_dl = YoutubeDownloader(cli=cli)
 yt_dl.create()
+
+# wikipedia summarizer
+wiki = WikipediaSummarizer(cli=cli)
+wiki.create()
 
 
 if __name__ == '__main__':

@@ -11,8 +11,8 @@ class YoutubeDownloader(Command):
 
     def create(self):
         @self.cli.command(help="download youtube videos")
-        @click.option("--filename", required=False, )
-        @click.option("--path", default=f"{os.environ['UserProfile']}/Videos")
+        @click.option("--filename", required=False, help="save the downloaded file with a custom filename")
+        @click.option("--path", default=f"{os.environ['UserProfile']}/Videos", help="change the path where the file will be saver", show_default=True)
         @click.argument("url", required=True)
         def yt_dl(url, filename, path):
             youtubeObject = YouTube(url)
