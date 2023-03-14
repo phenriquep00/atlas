@@ -5,8 +5,6 @@ import click
 import openai
 
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
 class Chat(Command):
     def __init__(self, cli):
         super().__init__(cli)
