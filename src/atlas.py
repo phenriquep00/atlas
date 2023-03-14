@@ -1,6 +1,8 @@
 import os
 import sys
 import click
+import openai
+from commands.chat import Chat
 
 from commands.hello import Hello
 from commands.ping import Ping
@@ -31,6 +33,10 @@ yt_dl.create()
 # wikipedia summarizer
 wiki = WikipediaSummarizer(cli=cli)
 wiki.create()
+
+# AI chat
+ask = Chat(cli=cli)
+ask.create()
 
 
 if __name__ == '__main__':
