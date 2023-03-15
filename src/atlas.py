@@ -1,6 +1,7 @@
 import os
 import sys
 import click
+from commands.dictionary import Dictionary
 
 from commands.hello import Hello
 from commands.ping import Ping
@@ -36,6 +37,10 @@ wiki.create()
 # AI chat
 ask = Chat(cli=cli)
 ask.create()
+
+# Dictionary
+dictionary = Dictionary(cli=cli)
+dictionary.create()
 
 
 if __name__ == '__main__':
