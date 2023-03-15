@@ -16,6 +16,8 @@ class Chat(Command):
             response = openai.Completion.create(
                 model="text-davinci-003",
                 prompt=prompt,
-                temperature=0.6
+                temperature=0,
+                max_tokens = 256
             )
+            click.echo(response)
             click.echo(f'{response.choices[0].text} \n')
