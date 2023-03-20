@@ -5,6 +5,8 @@ import click
 import openai
 
 
+# TODO: use api key from .env insteadof the one set on the computer env vars manually
+
 class Chat(Command):
     def __init__(self, cli):
         super().__init__(cli)
@@ -17,7 +19,7 @@ class Chat(Command):
                 model="text-davinci-003",
                 prompt=prompt,
                 temperature=0,
-                max_tokens = 256
+                max_tokens=256
             )
             click.echo(response)
             click.echo(f'{response.choices[0].text} \n')

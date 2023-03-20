@@ -13,17 +13,21 @@ class Dictionary(Command):
         @click.argument("word", required=True)
         def dict(word):
             response = requests.get(self.api_endpoint + word.strip())
-            data = response.json()[0]
-            formated_data = {
-                'word': data['word'],
-                'phonetic': data['phonetic'],
-                'meanings': [[meaning['partOfSpeech'], meaning['definitions'][0]['definition']] for meaning in data['meanings']]
-            }
-            click.echo(
-                f"Definition of the word \n---{formated_data['word'].upper()}---\n\nphonetic:{formated_data['phonetic']}\nmeanings:\n")
-            for meaning in formated_data['meanings']:
-                click.echo('--------------------------------------')
-                click.echo(meaning[0].upper() +'\n')
-                click.echo(meaning[1])
-                click.echo('--------------------------------------\n')
-
+            try:
+                data = response.json()[0]
+                formated_data = {
+                    'word': data['word'],
+                    'phonetic': data['phonetic'],
+                    'meanings': [[meaning['partOfSpeech'], meaning['definitions'][0]['definition']] for meaning in data['meanings']]
+                }
+                click.echo(
+                    f"Definition of the word \n---{formated_data['word'].upper()}---\n\nphonetic:{formated_data['phonetic']}\nmeanings:\n")
+                for meaning in formated_data['meanings']:
+                    click.echo('--------------------------------------')
+                    click.echo(meaning[0].upper() + '\n')
+                    click.echo(meaning[1])
+                    click.echo('--------------------------------------\n')
+            except KeyError:
+                click.echo(
+                    'invalid word! please, check grammar or try again with a valid word from the english dictionary'.upper())
+ 
