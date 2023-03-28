@@ -1,6 +1,7 @@
 import os
 import sys
 import click
+from commands.dice import Dice
 
 from commands.hello import Hello
 from commands.ping import Ping
@@ -42,6 +43,10 @@ ask.create()
 # Dictionary
 dictionary = Dictionary(cli=cli)
 dictionary.create()
+
+# Dice
+dice = Dice(cli=cli)
+dice.create()
 
 # -------------------------------------------------------------------------------------
 
