@@ -1,16 +1,18 @@
 class Command:
-    """Command interface 
+    """An interface for creating CLI commands.
     """
+
     def __init__(self, cli):
-        """instance initializer
+        """Initialize a new Command instance.
 
         Args:
-            cli (clicker command group): the clicker command group function
+            cli (click.Group): The click command group function that will serve as the entry point for the command.
         """
         self.cli = cli
 
     def create(self):
-        """create the command object to be executed at atlas.py
-        the definition of arguments and options go in here before the function to be executed
+        """Create the command object to be executed by the CLI application.
+
+        The `create()` method should be implemented in each subclass to define the command object and its arguments and options.
         """
         pass
