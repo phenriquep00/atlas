@@ -17,13 +17,6 @@ The following are the basic tasks that the Atlas Virtual Assistant V1.0 can perf
     Dice: Roll a dice and return a random number
     Ping: Test internet connection
 
-## Installation
-
-To install Atlas Virtual Assistant V1.0, follow the steps below:
-
-    Clone the repository to your local machine
-    Install the required dependencies using pip install -r requirements.txt
-    Run the application using python atlas.py
 
 ## Future Development
 
