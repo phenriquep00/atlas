@@ -1,7 +1,7 @@
-Atlas CLI Virtual Assistant
+# Atlas CLI Virtual Assistant
 
 Atlas CLI Virtual Assistant is a Python-based virtual assistant designed to automate simple tasks, provide information access, and simplify complex tasks. The first version of the application uses a text interface to execute basic commands.
-# Objective
+## Objective
 
 The main objective of Atlas Virtual Assistant V1.0 is to automate simple tasks with minimal commands. The application is designed to work on both Windows and Linux operating systems, making it accessible to a wider audience.
 Description
