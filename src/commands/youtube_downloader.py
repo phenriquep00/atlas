@@ -2,7 +2,7 @@ import os
 import click
 from pytube import YouTube
 
-from atlas.Command import Command
+from Command import Command
 
 
 class YoutubeDownloader(Command):
@@ -12,7 +12,6 @@ class YoutubeDownloader(Command):
     def create(self):
         @self.cli.command(help="download youtube videos")
         @click.option("--filename", required=False, help="save the downloaded file with a custom filename")
-        @click.option("--path", default=f"{os.path.expanduser('~')}/Videos", help="change the path where the file will be saver", show_default=True)
         @click.option("--path", default=f"{os.path.expanduser('~')}/Videos", help="change the path where the file will be saver", show_default=True)
 
         @click.argument("url", required=True)

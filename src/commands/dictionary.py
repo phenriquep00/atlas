@@ -1,6 +1,6 @@
 import click
 import requests
-from atlas.Command import Command
+from Command import Command
 
 
 class Dictionary(Command):

@@ -1,0 +1,2 @@
+#!/bin/bash
+python3 /home/pedro/Documents/GitHub/atlas/src/atlas.py "$@"

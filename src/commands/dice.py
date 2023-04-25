@@ -1,5 +1,5 @@
 import click
-from atlas.Command import Command
+from Command import Command
 
 from random import choice
 

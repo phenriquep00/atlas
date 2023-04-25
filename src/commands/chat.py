@@ -4,7 +4,7 @@ import os
 import click
 import openai
 
-from atlas.Command import Command
+from Command import Command
 
 
 # TODO: use api key from .env insteadof the one set on the computer env vars manually
