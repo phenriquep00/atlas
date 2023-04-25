@@ -1,4 +1,4 @@
-from commands.command import Command
+from atlas.Command import Command
 
 import os
 import click

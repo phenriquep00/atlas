@@ -1,5 +1,5 @@
 import subprocess
-from commands.command import Command
+from atlas.Command import Command
 
 
 class Ping(Command):

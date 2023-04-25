@@ -1,14 +1,14 @@
 import os
 import sys
 import click
-from commands.dice import Dice
+from .commands.dice import Dice
 
-from commands.hello import Hello
-from commands.ping import Ping
-from commands.youtube_downloader import YoutubeDownloader
-from commands.wikipedia_summarizer import WikipediaSummarizer
-from commands.chat import Chat
-from commands.dictionary import Dictionary
+from .commands.hello import Hello
+from .commands.ping import Ping
+from .commands.youtube_downloader import YoutubeDownloader
+from .commands.wikipedia_summarizer import WikipediaSummarizer
+from .commands.chat import Chat
+from .commands.dictionary import Dictionary
 
 
 # Definition of the cli commands group
